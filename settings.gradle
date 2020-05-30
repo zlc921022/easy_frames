@@ -1,0 +1,16 @@
+rootProject.name='easy_frames'
+include ':app'
+include ':common_base'
+include ':common_resource'
+// easy_router
+include ':easy_router:easy-annotation'
+include ':easy_router:easy-core'
+include ':easy_router:easy-compiler'
+// easy_butterknife
+include ':easy_butterknife:butterknife-annotation'
+include ':easy_butterknife:butterknife-core'
+include ':easy_butterknife:butterknife-compiler'
+
+include ':module:module_router1'
+include ':module:module_router2'
+include ':easy_okhttp'

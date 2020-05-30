@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--组件壳命名-->
+    <string name="app_name">easy_component</string>
+    <string name="app_aop">app-aop</string>
+    <string name="app_router">app-router</string>
+    <string name="app_ble">app-bluetooth</string>
+    <string name="app_jetpack">app-jetpack</string>
+    <string name="aop_widget">app-widget</string>
+    <string name="aop_mvvm">app-mvvm</string>
+    <string name="aop_dagger2">app-dagger2</string>
+    <string name="app_apm">app-apm</string>
+
+    <!--模块命名-->
+    <string name="module_bluetooth">蓝牙学习</string>
+    <string name="module_dagger2">dagger2学习</string>
+    <string name="module_jetpack">jetpack学习</string>
+    <string name="module_mvp">mvp测试</string>
+    <string name="module_mvvm">mvvm测试</string>
+    <string name="module_arouter">arouter学习</string>
+    <string name="module_widget">自定义控件学习</string>
+
+</resources>

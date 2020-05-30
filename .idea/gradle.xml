@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="PLATFORM" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/common_base" />
+            <option value="$PROJECT_DIR$/common_resource" />
+            <option value="$PROJECT_DIR$/easy_butterknife" />
+            <option value="$PROJECT_DIR$/easy_butterknife/butterknife-annotation" />
+            <option value="$PROJECT_DIR$/easy_butterknife/butterknife-compiler" />
+            <option value="$PROJECT_DIR$/easy_butterknife/butterknife-core" />
+            <option value="$PROJECT_DIR$/easy_okhttp" />
+            <option value="$PROJECT_DIR$/easy_router" />
+            <option value="$PROJECT_DIR$/easy_router/easy-annotation" />
+            <option value="$PROJECT_DIR$/easy_router/easy-compiler" />
+            <option value="$PROJECT_DIR$/easy_router/easy-core" />
+            <option value="$PROJECT_DIR$/module" />
+            <option value="$PROJECT_DIR$/module/module_router1" />
+            <option value="$PROJECT_DIR$/module/module_router2" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

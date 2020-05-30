@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+def supportDependencies = rootProject.ext.supportDependencies
+def thirdDependencies = rootProject.ext.thirdDependencies
+def config = rootProject.ext.android
+
+android {
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.xiaochen.easy.frames"
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation supportDependencies.supportAppcompat
+    implementation supportDependencies.constraintLayout
+
+    implementation project(':common_base')
+    implementation project(':easy_router:easy-core')
+    implementation project(':module:module_router1')
+    implementation project(':module:module_router2')
+
+    annotationProcessor project(':easy_butterknife:butterknife-compiler')
+    implementation project(':easy_butterknife:butterknife-core')
+
+    implementation project(':easy_okhttp')
+}
