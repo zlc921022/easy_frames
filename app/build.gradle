@@ -45,4 +45,5 @@ dependencies {
     implementation project(':easy_butterknife:butterknife-core')
 
     implementation project(':easy_okhttp')
+    implementation project(':module:module-okhttp')
 }

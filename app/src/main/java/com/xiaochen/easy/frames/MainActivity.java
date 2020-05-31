@@ -1,5 +1,6 @@
 package com.xiaochen.easy.frames;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
@@ -8,6 +9,7 @@ import com.xiaochen.butterknife.core.EasyButterKnife;
 import com.xiaochen.common.base.BaseActivity;
 import com.xiaochen.common.base.RouterPathConstant;
 import com.xiaochen.easy.core.EasyRouter;
+import com.xiaochen.module.easy.okhttp.OkHttpMainActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -52,6 +54,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         .navigation(this);
                 break;
             case R.id.btn_2:
+                Intent intent = new Intent(this, OkHttpMainActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btn_3:
                 break;
