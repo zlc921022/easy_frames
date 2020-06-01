@@ -2,7 +2,7 @@ package com.xiaochen.easy.okhttp.interceptor;
 
 import android.util.Log;
 
-import com.xiaochen.easy.okhttp.HttpCodec;
+import com.xiaochen.easy.okhttp.connection.HttpCodec;
 import com.xiaochen.easy.okhttp.RealInterceptorChain;
 import com.xiaochen.easy.okhttp.Request;
 import com.xiaochen.easy.okhttp.RequestBody;

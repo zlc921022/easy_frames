@@ -3,8 +3,8 @@ package com.xiaochen.easy.okhttp.interceptor;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.xiaochen.easy.okhttp.HttpCodec;
-import com.xiaochen.easy.okhttp.HttpConnection;
+import com.xiaochen.easy.okhttp.connection.HttpCodec;
+import com.xiaochen.easy.okhttp.connection.HttpConnection;
 import com.xiaochen.easy.okhttp.RealInterceptorChain;
 import com.xiaochen.easy.okhttp.Response;
 
@@ -24,8 +24,9 @@ public class CallServerInterceptor implements Interceptor {
         HttpCodec httpCodec = chain1.getHttpCodec();
         HttpConnection connection = chain1.getConnection();
         InputStream is = connection.call(httpCodec);
-        //HTTP/1.1 200 OK 空格隔开的响应状态
+        // HTTP/1.1 200 OK 空格隔开的响应状态
         String readLine = httpCodec.readLine(is);
+        // 获取服务端返回的响应头
         Map<String, String> heads = httpCodec.readHeads(is);
         //是否保持连接
         boolean isKeepAlive = false;

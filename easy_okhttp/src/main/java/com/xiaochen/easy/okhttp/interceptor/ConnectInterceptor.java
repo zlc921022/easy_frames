@@ -2,22 +2,23 @@ package com.xiaochen.easy.okhttp.interceptor;
 
 import android.util.Log;
 
-import com.xiaochen.easy.okhttp.HttpConnection;
 import com.xiaochen.easy.okhttp.HttpUrl;
 import com.xiaochen.easy.okhttp.OkHttpClient;
 import com.xiaochen.easy.okhttp.RealInterceptorChain;
 import com.xiaochen.easy.okhttp.Request;
 import com.xiaochen.easy.okhttp.Response;
+import com.xiaochen.easy.okhttp.connection.HttpConnection;
 
 import java.io.IOException;
 
 /**
  * 连接拦截器
+ * @author admin
  */
-public class ConnectInterceptor implements Interceptor{
+public class ConnectInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
-        Log.e("intercept","连接拦截器");
+        Log.e("intercept", "连接拦截器");
         RealInterceptorChain chain1 = (RealInterceptorChain) chain;
         Request request = chain1.getCall().getRequest();
         OkHttpClient client = chain1.getCall().getClient();
@@ -25,15 +26,17 @@ public class ConnectInterceptor implements Interceptor{
         String host = url.getHost();
         int port = url.getPort();
         HttpConnection connection = client.getConnectionPool().get(host, port);
-        if(connection == null){
+        if (connection == null) {
             connection = new HttpConnection();
-        }else{
+        } else {
             Log.e("call", "使用连接池......");
         }
         connection.setRequest(request);
         Response response = chain1.proceed(connection);
-        if(response.isKeepAlive()){
+        if (response.isKeepAlive()) {
             client.getConnectionPool().put(connection);
+        } else {
+            connection.closeQuietly();
         }
         return response;
     }

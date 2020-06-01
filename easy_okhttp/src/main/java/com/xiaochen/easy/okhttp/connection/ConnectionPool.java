@@ -1,4 +1,4 @@
-package com.xiaochen.easy.okhttp;
+package com.xiaochen.easy.okhttp.connection;
 
 import android.util.Log;
 
@@ -60,13 +60,18 @@ public class ConnectionPool {
             new SynchronousQueue<>(), factory
     );
 
+    /**
+     * 创建一个线程,用于定时检查,并清理无用的连接(无用 指 没使用的间期超过了保留时间)
+     */
     private final Runnable cleanupRunnable = new Runnable() {
 
         @Override
         public void run() {
             while (true){
+                // 再过多久需要再次检测
                 long waitTimes = cleanup(System.currentTimeMillis());
                 if(waitTimes == -1){
+                    //连接池为空，清理线程执行结束
                     return;
                 }
                 if(waitTimes > 0){
@@ -108,12 +113,16 @@ public class ConnectionPool {
      * 检查需要移除的连接返回下次检查时间
      */
     long cleanup(long now){
+        /**
+         * 最长闲置时间
+         */
         long longestIdleDuration = -1;
         synchronized (this){
             Iterator<HttpConnection> it = connections.iterator();
             while (it.hasNext()){
                 HttpConnection connection = it.next();
-                long idleDuration = connection.lastUseTime;
+                long idleDuration = now - connection.lastUseTime;
+                // 根据闲置时间来判断是否需要被清理
                 if(idleDuration > keepAliveDuration){
                     connection.closeQuietly();
                     it.remove();
@@ -126,6 +135,7 @@ public class ConnectionPool {
             }
             //下次检查时间
             if(longestIdleDuration >= 0){
+                //返回的值，下一次清理要多久以后
                 return keepAliveDuration - longestIdleDuration;
             }else{
                 cleanupRunning = false;

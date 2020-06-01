@@ -5,11 +5,11 @@ import java.util.Map;
 
 public class Response {
 
-    int code;
-    Map<String, String> heads;
-    String body;
-    boolean isKeepAlive;
-    int contentLength = -1;
+    private int code;
+    private Map<String, String> heads;
+    private String body;
+    private boolean isKeepAlive;
+    private int contentLength = -1;
 
     public Response(Builder builder) {
         this.code = builder.code;

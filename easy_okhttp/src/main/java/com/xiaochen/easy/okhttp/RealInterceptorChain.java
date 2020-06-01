@@ -1,5 +1,7 @@
 package com.xiaochen.easy.okhttp;
 
+import com.xiaochen.easy.okhttp.connection.HttpCodec;
+import com.xiaochen.easy.okhttp.connection.HttpConnection;
 import com.xiaochen.easy.okhttp.interceptor.Interceptor;
 
 import java.io.IOException;
@@ -38,6 +40,9 @@ public class RealInterceptorChain implements Interceptor.Chain {
     }
 
     public Response proceed(HttpConnection connection) throws IOException {
+        if (index > interceptors.size() - 1) {
+            throw new IOException("Interceptor Chain Error");
+        }
         // 获取当前链的下一个节点
         RealInterceptorChain next = new RealInterceptorChain(interceptors, index + 1, call, connection);
         // 获取当前拦截器 调用intercept传入下一个链节点

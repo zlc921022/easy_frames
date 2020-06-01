@@ -8,8 +8,8 @@ public class Request {
 
     HttpUrl url;
     String method;
-    RequestBody requestBody;
-    Map<String, String> heads;
+    private RequestBody requestBody;
+    private Map<String, String> heads;
 
     public Request(Builder builder) {
         this.url = builder.url;

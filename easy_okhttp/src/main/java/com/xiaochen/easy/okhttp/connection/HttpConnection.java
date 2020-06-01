@@ -1,6 +1,9 @@
-package com.xiaochen.easy.okhttp;
+package com.xiaochen.easy.okhttp.connection;
 
 import android.text.TextUtils;
+
+import com.xiaochen.easy.okhttp.HttpUrl;
+import com.xiaochen.easy.okhttp.Request;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,13 +43,13 @@ public class HttpConnection {
 
     private void createSocket() throws IOException {
         if (null == socket || socket.isClosed()) {
-            HttpUrl url = request.url;
-            if (url.protocol.equalsIgnoreCase(HTTPS)) {
+            HttpUrl url = request.getUrl();
+            if (url.getProtocol().equalsIgnoreCase(HTTPS)) {
                 socket = SSLSocketFactory.getDefault().createSocket();
             } else {
                 socket = new Socket();
             }
-            socket.connect(new InetSocketAddress(url.host, url.port));
+            socket.connect(new InetSocketAddress(url.getHost(), url.getPort()));
             os = socket.getOutputStream();
             is = socket.getInputStream();
         }
@@ -74,7 +77,7 @@ public class HttpConnection {
         return TextUtils.equals(
                 socket.getInetAddress().getHostName(),
                 host
-        );
+        ) && socket.getPort() == port;
     }
 
 }

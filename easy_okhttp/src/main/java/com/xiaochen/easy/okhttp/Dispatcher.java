@@ -94,12 +94,15 @@ public class Dispatcher {
         Iterator<RealCall.AsyncCall> it = readyAsyncCalls.iterator();
         while (it.hasNext()) {
             RealCall.AsyncCall call = it.next();
+            /**
+             * 如果添加任务后 小于 单个Host下同时允许的最大数就可以执行
+             */
             if (getSameHostCount(call) < maxRequestsPerHost) {
                 it.remove();
                 runningAsyncCalls.add(call);
                 executorService().execute(call);
             }
-            if (runningAsyncCalls.size() > maxRequests) {
+            if (runningAsyncCalls.size() >= maxRequests) {
                 return;
             }
         }

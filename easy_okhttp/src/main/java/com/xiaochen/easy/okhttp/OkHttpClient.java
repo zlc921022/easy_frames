@@ -1,5 +1,6 @@
 package com.xiaochen.easy.okhttp;
 
+import com.xiaochen.easy.okhttp.connection.ConnectionPool;
 import com.xiaochen.easy.okhttp.interceptor.Interceptor;
 
 import java.util.ArrayList;
@@ -10,15 +11,15 @@ public class OkHttpClient {
     /**
      * 队列 任务分发
      */
-    Dispatcher dispatcher;
+    private Dispatcher dispatcher;
     /**
      * 连接池
      */
-    ConnectionPool connectionPool;
+    private ConnectionPool connectionPool;
     /**
      * 连接时间
      */
-    int connectTimeout;
+    private int connectTimeout;
     /**
      * 拦截器
      */
@@ -27,7 +28,7 @@ public class OkHttpClient {
     /**
      * 重试次数
      */
-    int retry;
+    private int retry;
 
     public OkHttpClient(Builder builder) {
         this.dispatcher = builder.dispatcher;

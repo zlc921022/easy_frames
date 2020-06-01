@@ -1,4 +1,7 @@
-package com.xiaochen.easy.okhttp;
+package com.xiaochen.easy.okhttp.connection;
+
+import com.xiaochen.easy.okhttp.Request;
+import com.xiaochen.easy.okhttp.RequestBody;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,14 +35,14 @@ public class HttpCodec {
         byteBuffer = ByteBuffer.allocate(10 * 1024);
     }
 
-    public void wirteRequest(OutputStream os,Request request) throws IOException {
+    public void wirteRequest(OutputStream os, Request request) throws IOException {
 
         StringBuilder sb = new StringBuilder();
 
         //请求行
-        sb.append(request.method);
+        sb.append(request.getMethod());
         sb.append(SPACE);
-        sb.append(request.url.file);
+        sb.append(request.getUrl().getFile());
         sb.append(SPACE);
         sb.append(VERSION);
         sb.append(SPACE);
